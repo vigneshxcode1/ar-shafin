@@ -1,0 +1,182 @@
+/* Global Styles */
+body {
+
+    background-color:rgb(31, 69, 41);
+    background-image: url("../../images/33Hn.gif");
+  }
+  
+  .grid-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+
+ 
+  .input-container {
+    text-align: center;
+    margin: 10px 0;
+ 
+    border: none;
+    background: transparent;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    width: 60%;
+    font-size: 1rem;
+    margin-right: 10px;
+    background: transparent;
+
+  
+   border: 0;
+   border-bottom: 1px solid rgb(255, 255, 255);
+
+   &::placeholder {
+    color:rgb(248, 248, 248);
+  }
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(71, 102, 59);
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .search {
+    background-color:rgb(71, 102, 59);
+    color: white;
+    border-radius: 5px;
+  }
+  
+ 
+  /* Grid Layout for Mosque Cards */
+  .containers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Responsive columns */
+    gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+    margin-right:50px ;
+  }
+  
+  .mosque-card {
+    display: grid;
+    grid-template-columns: 150px 1fr; /* 150px for image, 1fr for details */
+    background-color:rgb(232, 236, 215);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    align-items: center;
+    gap: 20px;
+    width: 100%; 
+
+    margin-bottom: 40px;
+  }
+  
+  .mosque-image {
+    width: 110%; ; 
+    object-fit: coer;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .mosque-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 120px;
+    
+  }
+
+  .moremore{
+    padding:8px;
+    font-size: 20px;
+  }
+  
+  .mosque-title {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 900;
+  }
+  
+  .mosque-location {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .loading-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100px;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .grid-title {
+     
+      color: aliceblue;
+      
+    }
+  
+    .input-container input[type="text"] {
+      width: 80%;
+    }
+  
+    .containers {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  
+    .mosque-card {
+      grid-template-columns: 120px 1fr;
+    }
+  
+    .mosque-image {
+      height: 100px;
+    }
+  
+    .mosque-title {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .input-container input[type="text"] {
+      width: 60%;
+    }
+  
+    .mosque-card {
+      padding: 15px;
+    }
+  
+    .grid-title {
+      font-size: 1.6rem;
+    }
+  
+    .mosque-image {
+      height: 90px;
+    }
+  
+    .mosque-title {
+      font-size: 0.9rem;
+    }
+  
+    button {
+      padding: 8px 12px;
+    }
+  }
+  

@@ -15,7 +15,7 @@ const navigate =useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/mosque/register", formData);
+      const res = await axios.post("https://ar-shafin-server.onrender.com/api/mosque/register", formData);
       alert(res.data.message);
       navigate('/login')
     } catch (error) {

@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Listmosque.css';
 
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
 const Listmosque = () => {
   const [mosques, setmosque] = useState([]);

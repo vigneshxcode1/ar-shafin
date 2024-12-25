@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './CreateMosque.css';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
 const CreateMosque = () => {
   const [formData, setFormData] = useState({

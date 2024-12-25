@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import './mosque.css';
 import mapimg from '../../images/google-maps.png';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
 const MosqueDetail = () => {
   const { id } = useParams();

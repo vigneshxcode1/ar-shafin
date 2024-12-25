@@ -18,5 +18,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
     "nodemon": "^3.1.9"
-  }
+  },
+  "proxy": "https://ar-shafin-server.onrender.com"
+
 }

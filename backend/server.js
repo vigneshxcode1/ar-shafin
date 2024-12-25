@@ -10,11 +10,24 @@ const app = express()
 
 app.use(express.json());
 
+
+
+
+const allowedOrigins = [
+  'http://localhost:5173',           
+  'https://ar-shafin-client.onrender.com',
+];
+
 app.use(cors({
-  origin: 'https://ar-shafin-server.onrender.com',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'admin-id','Content-Type,Authorization']
-  
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'admin-id','Authorization'], // Specify allowed headers
 }));
 
 

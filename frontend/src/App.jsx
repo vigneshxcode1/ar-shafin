@@ -9,6 +9,8 @@ import Createmosques from "./componets/admin/Createmosques.jsx";
 import Showallmosques from "./componets/admin/Showallmosques .jsx";
 import Updatemosques from "./componets/admin/Updatemosques.jsx";
 import Deletedmosques from "./componets/admin/Deletedmosques.jsx";
+import Login from "./componets/login/Login.jsx";
+import Register from "./componets/register/Resgister.jsx";
 
 
 
@@ -31,9 +33,15 @@ const App = () => {
 
         <Route path="/dashbroad" element={<Dashbroad />} />
         <Route path="/createmosque" element={<Createmosques />} />
-        <Route path="/showallmosques" element={<Showallmosques />} />
+        <Route path="/my-mosques" element={<Showallmosques />} />
         <Route path="/mosques/update/:id" element={<Updatemosques />} />
         <Route path="/mosques/delete/:id" element={<Deletedmosques />} />
+
+
+        <Route path="/login" element={<Login/>}/>
+        
+        <Route path="/register" element={<Register/>}/>
+
 
    </Routes>
    </BrowserRouter>

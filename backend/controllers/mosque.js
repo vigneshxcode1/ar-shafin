@@ -1,33 +1,50 @@
-import apiFeature from "../utils/apiFeatures.js";
-import mosqueModel from '../models/mosque.js'
-
+import mosqueModel from "../models/mosque.js";
+import ApiFeatures from "../utils/apiFeatures.js";
 
 export const createmosque = async (req, res) => {
   try {
-    const { name, slug, address, contactInfo, aboutInfo, facilities, timings, user,images } = req.body;
-
-    if (!images || !Array.isArray(images) || images.length === 0) {
-      return res.status(400).json({ message: 'Images are required and must be an array' });
-    }
-
-    
-    if (!name || !slug || !address || !contactInfo || !facilities) {
-      return res.status(400).json({
-        success: false,
-        message: "Please provide all required fields.",
-      });
-    }
+    const {
+      name,
+      slug,
+      state,
+      city,
+      street,
+      postalCode,
+      phone,
+      email,
+      website,
+      regular,
+      friday,
+      fajr,
+      dhuhr,
+      asr,
+      maghrib,
+      isha,
+      jumma,
+      images,
+    } = req.body;
+    const Adminid = req.headers["admin-id"];
 
     const mosque = new mosqueModel({
       name,
       slug,
-      address,
-      contactInfo,
-      aboutInfo,
-      facilities,
-      timings,
-      user,
-      images
+      state,
+      city,
+      street,
+      postalCode,
+      phone,
+      email,
+      website,
+      regular,
+      friday,
+      fajr,
+      dhuhr,
+      asr,
+      maghrib,
+      isha,
+      jumma,
+      images,
+      uniqueId: Adminid,
     });
 
     await mosque.save();
@@ -45,21 +62,28 @@ export const createmosque = async (req, res) => {
 };
 
 
-export const getmosques = async (req, res, next) => {
-  const resultperpage = 100;
-  const apiFeatures = new apiFeature(mosqueModel.find(), req.query)
-    .search()
-    .filter()
-    .paginate(resultperpage);
+export const getmosques = async (req, res) => {
+  try {
+    const resultPerPage = 10;  // Number of results per page
+    const apiFeatures = new ApiFeatures(mosqueModel.find(), req.query)
+      .search()  
+      .filter()  
+      .paginate(resultPerPage);  
 
-  const mosque = await apiFeatures.query;
-  res.status(200).json({
-    success: true,
-    message: "success get all mosques",
-    count: mosque.length,
-    mosque,
-   
-  });
+    const mosques = await apiFeatures.query;
+
+    res.status(200).json({
+      success: true,
+      count: mosques.length,
+      mosques,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+    });
+  }
 };
 
 export const singlemosque = async (req, res, next) => {
@@ -87,23 +111,77 @@ export const singlemosque = async (req, res, next) => {
   }
 };
 
-export const updatemosque = async (req, res, next) => {
-  let mosque = await mosqueModel.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runvalidator: true,
-  });
-  if (!mosque) {
-    return res.status(404).json({
-      success: true,
-      message: "mosque not found",
-    });
+
+
+export const updatemosque = async (req, res) => {
+  try {
+    // Log the request body to inspect incoming data
+    console.log("Request Body:", req.body);
+
+    // Extract prayer timings and other mosque details from the request body
+    const { 
+      name, 
+      slug, 
+      street, 
+      city, 
+      state, 
+      postalCode, 
+      phone, 
+      email, 
+      website, 
+      regular, 
+      friday, 
+      fajr, 
+      dhuhr, 
+      asr, 
+      maghrib, 
+      isha, 
+      jumma, 
+      images 
+    } = req.body;
+
+    // Update the mosque with the new data
+    const mosque = await mosqueModel.findByIdAndUpdate(
+      req.params.id, // Using the mosque ID from the URL params
+      {
+        name,
+        slug,
+        street,
+        city,
+        state,
+        postalCode,
+        phone,
+        email,
+        website,
+        regular,
+        friday,
+        fajr,
+        dhuhr,
+        asr,
+        maghrib,
+        isha,
+        jumma,
+        images
+      },
+      { new: true } // Return the updated mosque
+    );
+
+    // Check if the mosque exists
+    if (!mosque) {
+      return res.status(404).json({ success: false, message: "Mosque not found" });
+    }
+
+    // Respond with the updated mosque data
+    res.status(200).json({ success: true, message: "Mosque updated successfully", mosque });
+  } catch (error) {
+    // Log any errors and return a server error response
+    console.error(error);
+    res.status(500).json({ success: false, message: "Server Error" });
   }
-  res.status(200).json({
-    success: true,
-    message: "mosque updated ",
-    mosque,
-  });
 };
+
+
+
 
 export const singlemosqueupdate = async (req, res) => {
   let mosque = await mosqueModel.findByIdAndUpdate(req.params.id, req.body, {

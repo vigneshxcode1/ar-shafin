@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import loadingimg from '../../loading/loading1.gif';
+import { Link, useNavigate } from 'react-router-dom';
 import './Listmosque.css';
+
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -17,11 +17,12 @@ const Listmosque = () => {
     const fetchmosques = async () => {
       try {
         const res = await axios.get(`${BASE_URL}/api/mosque/getmosque`);
-        console.log(res);
-        const sortedmosques = res.data.mosque.sort(
+        console.log(res.data.mosques);
+        const sortedMosques = res.data.mosques.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
-        setmosque(sortedmosques);
+        setmosque(sortedMosques);
+        console.log(sortedMosques)
       } catch (err) {
         console.error('Error fetching mosques:', err);
         setError('Failed to load mosques. Please try again later.');
@@ -37,7 +38,7 @@ const Listmosque = () => {
     setmosque((prevMosques) =>
       prevMosques.filter((mosque) =>
         mosque.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mosque.address.city.toLowerCase().includes(searchQuery.toLowerCase())
+        mosque.city.toLowerCase().includes(searchQuery.toLowerCase()) // Removed 'address.'
       )
     );
   };
@@ -45,7 +46,6 @@ const Listmosque = () => {
   if (loading) {
     return (
       <>
-        <img className="loading-image" src={loadingimg} alt="Loading..." />
         <p className="loading">Loading...</p>
       </>
     );
@@ -61,7 +61,11 @@ const Listmosque = () => {
 
   return (
     <div className="TOTAL">
-      <h2 className="grid-title">تمام مسجد</h2>
+      <h2 className="grid-title">تمام مسجد </h2>
+      <div className="auth">
+        <Link className="auth" to={"/login"}>login</Link>
+        <Link className="auth" to={"/register"}>register</Link>
+      </div>
       <div className="input-container">
         <input
           type="text"
@@ -91,8 +95,8 @@ const Listmosque = () => {
               )}
               <div className="mosque-details">
                 <p className="mosque-title">{mosque.name}</p>
-                <p className="mosque-title">{mosque.address.street}</p>
-                <p className="mosque-title">{mosque.address.city}-{mosque.address.postalCode}</p>
+                <p className="mosque-title">{mosque.street}</p> 
+                <p className="mosque-title">{mosque.city}-{mosque.postalCode}</p> 
                 <button className='moremore' onClick={() => navigate(`/detailsmosque/${mosque._id}`)}>
                   More Details
                 </button>

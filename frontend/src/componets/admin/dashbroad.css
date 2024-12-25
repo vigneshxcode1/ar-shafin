@@ -1,0 +1,16 @@
+.dashbroadlinks{
+    font-size: 50px ;
+    color: aliceblue;
+    display: flex;
+    padding: 20px;
+    text-decoration: none;
+    justify-content:center ;
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.dashboradtitle{
+    color: antiquewhite;
+    font-size: 30px;
+}

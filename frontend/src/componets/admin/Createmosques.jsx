@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './CreateMosque.css';
+import './CreateMosques.css';
+import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
 const CreateMosque = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     slug: '',
@@ -85,6 +88,7 @@ const CreateMosque = () => {
           jumma: { azaan: '', jamaat: '', qutba: '' },
           images: '',
         });
+        navigate("/my-mosques")
       }
     } catch (error) {
       setError('Failed to create mosque. Please try again.');

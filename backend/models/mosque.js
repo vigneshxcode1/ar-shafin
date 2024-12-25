@@ -38,11 +38,11 @@ const mosqueSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true,
+      
     },
     email: {
       type: String,
-      required: true,
+     
     },
     website: String,
 

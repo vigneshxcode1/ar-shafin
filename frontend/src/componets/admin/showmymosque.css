@@ -88,3 +88,8 @@
     font-size: 1.1em;
     margin-top: 10px;
 }
+
+.delete-button{
+    background-color: red;
+    margin-right: 40px;
+}

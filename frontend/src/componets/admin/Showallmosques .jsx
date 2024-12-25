@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './showmymosque.css'; 
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BASE_URL = "https://ar-shafin-server.onrender.com"
 
@@ -76,6 +76,7 @@ const navigate = useNavigate()
 
     return (
         <div className="show-my-mosques-container">
+            <Link to={"/"}>home</Link>
             <h2 className="show-my-mosques-title" id="title">My Mosques</h2>
             {error && <p className="error-message" id="error-message">{error}</p>}
             {mosques.length === 0 && !error && <p className="no-mosques-message" id="no-mosques-message">No mosques found for this admin.</p>}

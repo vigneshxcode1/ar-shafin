@@ -81,7 +81,7 @@ body {
     align-items: center;
     gap: 20px;
     width: 100%; 
-
+    box-shadow: 10px 5px 5px rgb(39, 39, 39);
     margin-bottom: 40px;
   }
   
@@ -101,7 +101,7 @@ body {
   }
 
   .moremore{
-    padding:8px;
+    padding:5px;
     font-size: 20px;
   }
   

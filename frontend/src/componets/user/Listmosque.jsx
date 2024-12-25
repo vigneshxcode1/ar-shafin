@@ -55,9 +55,6 @@ const Listmosque = () => {
     return <p>{error}</p>;
   }
 
-  if (mosques.length === 0) {
-    return <p>No mosques available</p>;
-  }
 
   return (
     <div className="TOTAL">

@@ -36,11 +36,12 @@ const Listmosque = () => {
   }, []);
 
   const handleSearch = () => {
+    const trimmedQuery = searchQuery.trim(); // Remove trailing spaces
     const filtered = mosques.filter((mosque) =>
-      mosque.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      mosque.city.toLowerCase().includes(searchQuery.toLowerCase())||
-      mosque.street.toLowerCase().includes(searchQuery.toLowerCase())||
-      mosque.postalCode.toLowerCase().includes(searchQuery.toLowerCase())
+      mosque.name.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+      mosque.city.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+      mosque.street.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
+      mosque.postalCode.toLowerCase().includes(trimmedQuery.toLowerCase())
     );
     setFilteredMosques(filtered);
   };

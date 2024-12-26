@@ -3,9 +3,9 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Listmosque.css';
 
-// const BASE_URL = 'https://ar-shafin-server.onrender.com';
+const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
-const BASE_URL="http://localhost:3000";
+// const BASE_URL="http://localhost:3000";
 
 const Listmosque = () => {
   const [mosques, setMosques] = useState([]);

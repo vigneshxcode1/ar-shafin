@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
-import Enterpage from './componets/user/Enter.jsx'
+// import Enterpage from './componets/user/Enter.jsx'
 import Listmosque from './componets/user/Listmosque.jsx'
 import MosqueDetails from "./componets/user/MosqueDetails.jsx";
 import Dashbroad from "./componets/admin/Dashbroad.jsx";
@@ -24,7 +24,7 @@ const App = () => {
 
     <Route path="/" element={<Enterpage/>}/>
 
-    <Route path="/search" element={<Enterpage/>}/>
+    {/* <Route path="/search" element={<Enterpage/>}/> */}
     
     <Route path="/listmosque" element={<Listmosque/>}/>
 

@@ -3,26 +3,27 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Listmosque.css';
 
+// const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
-const BASE_URL = 'https://ar-shafin-server.onrender.com';
+const BASE_URL="http://localhost:3000";
 
 const Listmosque = () => {
-  const [mosques, setmosque] = useState([]);
+  const [mosques, setMosques] = useState([]);
+  const [filteredMosques, setFilteredMosques] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchmosques = async () => {
+    const fetchMosques = async () => {
       try {
         const res = await axios.get(`${BASE_URL}/api/mosque/getmosque`);
-        console.log(res.data.mosques);
         const sortedMosques = res.data.mosques.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
-        setmosque(sortedMosques);
-        console.log(sortedMosques)
+        setMosques(sortedMosques);
+        setFilteredMosques(sortedMosques); // Initialize with all mosques
       } catch (err) {
         console.error('Error fetching mosques:', err);
         setError('Failed to load mosques. Please try again later.');
@@ -31,23 +32,24 @@ const Listmosque = () => {
       }
     };
 
-    fetchmosques();
+    fetchMosques();
   }, []);
 
   const handleSearch = () => {
-    setmosque((prevMosques) =>
-      prevMosques.filter((mosque) =>
-        mosque.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mosque.city.toLowerCase().includes(searchQuery.toLowerCase()) // Removed 'address.'
-      )
+    const filtered = mosques.filter((mosque) =>
+      mosque.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      mosque.city.toLowerCase().includes(searchQuery.toLowerCase())||
+      mosque.street.toLowerCase().includes(searchQuery.toLowerCase())||
+      mosque.postalCode.toLowerCase().includes(searchQuery.toLowerCase())
     );
+    setFilteredMosques(filtered);
   };
 
   if (loading) {
     return (
-      <>
+      <div>
         <p className="loading">Loading...</p>
-      </>
+      </div>
     );
   }
 
@@ -55,13 +57,12 @@ const Listmosque = () => {
     return <p>{error}</p>;
   }
 
-
   return (
     <div className="TOTAL">
-      <h2 className="grid-title">تمام مسجد </h2>
+      <h2 className="grid-title">تمام مسجد</h2>
       <div className="auth">
-        <Link className="auth" to={"/login"}>login</Link>
-        <Link className="auth" to={"/register"}>register</Link>
+        <Link className="auth" to="/login">Login</Link>
+        <Link className="auth" to="/register">Register</Link>
       </div>
       <div className="input-container">
         <input
@@ -78,28 +79,35 @@ const Listmosque = () => {
       <br />
       <div className="containers">
         <div className="grid">
-          {mosques.map((mosque) => (
-            <div className="mosque-card" key={mosque._id}>
-              {mosque.images && mosque.images.length > 0 ? (
-                <img
-                  className="mosque-image"
-                  onClick={() => navigate(`/detailsmosque/${mosque._id}`)}
-                  src={mosque.images[0]}
-                  alt={`${mosque.name} first image`}
-                />
-              ) : (
-                <p>No images available</p>
-              )}
-              <div className="mosque-details">
-                <p className="mosque-title">{mosque.name}</p>
-                <p className="mosque-title">{mosque.street}</p> 
-                <p className="mosque-title">{mosque.city}-{mosque.postalCode}</p> 
-                <button className='moremore' onClick={() => navigate(`/detailsmosque/${mosque._id}`)}>
-                  More Details
-                </button>
+          {filteredMosques.length > 0 ? (
+            filteredMosques.map((mosque) => (
+              <div className="mosque-card" key={mosque._id}>
+                {mosque.images && mosque.images.length > 0 ? (
+                  <img
+                    className="mosque-image"
+                    onClick={() => navigate(`/detailsmosque/${mosque._id}`)}
+                    src={mosque.images[0]}
+                    alt={`${mosque.name} first image`}
+                  />
+                ) : (
+                  <p>No images available</p>
+                )}
+                <div className="mosque-details">
+                  <p className="mosque-title">{mosque.name}</p>
+                  <p className="mosque-title">{mosque.street}</p>
+                  <p className="mosque-title">{mosque.city}-{mosque.postalCode}</p>
+                  <button
+                    className="moremore"
+                    onClick={() => navigate(`/detailsmosque/${mosque._id}`)}
+                  >
+                    More Details
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No mosques found matching your search.</p>
+          )}
         </div>
       </div>
     </div>

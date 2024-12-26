@@ -23,6 +23,8 @@ const App = () => {
    <Routes>
 
     <Route path="/" element={<Enterpage/>}/>
+
+    <Route path="/search" element={<Enterpage/>}/>
     
     <Route path="/listmosque" element={<Listmosque/>}/>
 

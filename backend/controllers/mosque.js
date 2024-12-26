@@ -64,7 +64,7 @@ export const createmosque = async (req, res) => {
 
 export const getmosques = async (req, res) => {
   try {
-    const resultPerPage = 10;  // Number of results per page
+    const resultPerPage = 100;  // Number of results per page
     const apiFeatures = new ApiFeatures(mosqueModel.find(), req.query)
       .search()  
       .filter()  

@@ -14,7 +14,7 @@ const mosqueSchema = new mongoose.Schema(
     },
     slug: {
       type: String,
-      required: true,
+
      
     },
     street: {

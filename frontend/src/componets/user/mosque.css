@@ -7,12 +7,19 @@
   
   font-family: Arial, sans-serif;
 }
-
+#capacity{
+  font-size: 20px;
+  background-color: #3b6f4a;
+  border-radius: 8px;
+  width: 90%;
+  
+}
 .heading {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #e5efa4;
   text-align: center;
+ 
 }
 
 .mosque-image img {

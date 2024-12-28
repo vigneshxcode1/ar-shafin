@@ -62,7 +62,8 @@ const MosqueDetail = () => {
   };
 
   return (
-    <div className="mosque-detail-container">
+    <>
+      <div className="mosque-detail-container">
       <h1 className="heading">{mosque.name || 'Mosque Name'}</h1>
 
       <div className="mosque-image">
@@ -83,7 +84,7 @@ const MosqueDetail = () => {
         <p><strong>Isha:</strong> {mosque.isha?.azaan || 'Not Available'} (Azan), {mosque.isha?.jamaat || 'Not Available'} (Jamaat)</p>
         <p><strong>Jumma:</strong> {mosque.jumma?.azaan || 'Not Available'} (Azan), {mosque.jumma?.jamaat || 'Not Available'} (Jamaat), Qutba: {mosque.jumma?.qutba || 'Not Available'}</p>
 
-        <p>Capacity: Regular - {mosque.regular || 'Not Available'}, Friday - {mosque.friday || 'Not Available'}</p>
+        <p id='capacity'>Capacity: Regular - {mosque.regular || 'Not Available'}, Friday - {mosque.friday || 'Not Available'}</p>
       </div>
 
       <button className="waytomosque" onClick={redirectToMap}>
@@ -100,6 +101,8 @@ const MosqueDetail = () => {
         <p>Email: {mosque.email || 'Not Available'}</p>
       </div>
     </div>
+    </>
+  
   );
 };
 

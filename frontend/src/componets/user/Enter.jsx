@@ -27,7 +27,7 @@ const Entry = () => {
 
   return (
     <div className="background">
-      <video ref={videoRef} src={backgroundVideo} type="video/mp4" autoPlay loop   playsInline className="background-video" />
+      <video ref={videoRef} src={backgroundVideo} type="video/mp4" autoPlay loop muted  playsInline className="background-video" />
       <div className="text-overlay">
         <h1 className="brand-img">AR-Rahman</h1>
         <p className="subhead">நம்பிக்கை கொண்டோர் மீது தொழுகை நேரம் குறிப்பிட்ட கடமையாகவுள்ளது</p>

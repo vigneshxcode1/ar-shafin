@@ -23,7 +23,7 @@ const Listmosque = () => {
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
         setMosques(sortedMosques);
-        setFilteredMosques(sortedMosques); // Initialize with all mosques
+        setFilteredMosques(sortedMosques);
       } catch (err) {
         console.error('Error fetching mosques:', err);
         setError('Failed to load mosques. Please try again later.');
@@ -36,7 +36,7 @@ const Listmosque = () => {
   }, []);
 
   const handleSearch = () => {
-    const trimmedQuery = searchQuery.trim(); // Remove trailing spaces
+    const trimmedQuery = searchQuery.trim(); 
     const filtered = mosques.filter((mosque) =>
       mosque.name.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
       mosque.city.toLowerCase().includes(trimmedQuery.toLowerCase()) ||

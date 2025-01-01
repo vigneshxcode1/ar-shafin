@@ -17,7 +17,8 @@ const allowedOrigins = [
   'http://localhost:5173',           
   'https://ar-shafin-client.onrender.com',
   'http://localhost:8081',
-  "https://nsmjcs4-vigneshwaran1-8081.exp.direct"
+  "https://nsmjcs4-vigneshwaran1-8081.exp.direct",
+  "http://192.168.31.81:5173"
 ];
 
 app.use(cors({

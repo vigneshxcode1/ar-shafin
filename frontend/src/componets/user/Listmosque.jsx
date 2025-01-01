@@ -13,6 +13,8 @@ const Listmosque = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [loactionm,setlocation]=useState("")
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,6 +48,17 @@ const Listmosque = () => {
     setFilteredMosques(filtered);
   };
 
+  const getnearbymosque = ()=>{
+if(navigator.geolocation){
+  navigator.geolocation.getCurrentPosition((postion)=>{
+    setlocation({
+      latitude:postion.coords.latitude,
+      longitude:postion.coords.longitude
+    })
+  })
+}
+  }
+
   if (loading) {
     return (
       <div>
@@ -76,6 +89,7 @@ const Listmosque = () => {
           Search
         </button>
       </div>
+      <button onClick={getnearbymosque}>getnearbymosque</button>
       <br />
       <br />
       <div className="containers">

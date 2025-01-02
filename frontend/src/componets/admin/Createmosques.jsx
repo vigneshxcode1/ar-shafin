@@ -86,7 +86,7 @@ const CreateMosque = () => {
           maghrib: { azaan: '', jamaat: '' },
           isha: { azaan: '', jamaat: '' },
           jumma: { azaan: '', jamaat: '', qutba: '' },
-          images: '',
+          images: [''],
         });
         navigate("/my-mosques")
       }

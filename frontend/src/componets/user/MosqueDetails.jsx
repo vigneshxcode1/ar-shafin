@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import './mosque.css';
 import mapimg from '../../images/google-maps.png';
 
@@ -11,6 +11,7 @@ const MosqueDetail = () => {
   const [mosque, setMosque] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+const navigate = useNavigate()
 
   useEffect(() => {
     const fetchMosqueDetail = async () => {
@@ -61,6 +62,18 @@ const MosqueDetail = () => {
     window.open(mapUrl, '_blank');
   };
 
+
+  const addtolocalstorage=()=>{
+    const existingWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+    const updatedWatchlist = [...existingWatchlist, mosque];
+    localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
+
+    if(updatedWatchlist){
+      navigate("/watchlist")
+    }
+
+  }
+
   return (
     <>
       <div className="mosque-detail-container">
@@ -90,6 +103,11 @@ const MosqueDetail = () => {
       <button className="waytomosque" onClick={redirectToMap}>
         Way to Map <img src={mapimg} className="mapimg" alt="Map Icon" />
       </button>
+
+      <button className="waytomosque" onClick={addtolocalstorage}>
+       watchlist 
+      </button>
+
 
       <div className="mosque-address">
         <h2>Address</h2>

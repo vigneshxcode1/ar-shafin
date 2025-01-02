@@ -3,27 +3,21 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Listmosque.css';
 
-const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
-// const BASE_URL="http://localhost:3000";
-
-const Listmosque = () => {
+const watchlist= () => {
   const [mosques, setMosques] = useState([]);
-  const [filteredMosques, setFilteredMosques] = useState([]);
+ 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMosques = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/api/mosque/getmosque`);
-        const sortedMosques = res.data.mosques.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
-        setMosques(sortedMosques);
-        setFilteredMosques(sortedMosques);
+        const existingWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+        setMosques(existingWatchlist);
+       
       } catch (err) {
         console.error('Error fetching mosques:', err);
         setError('Failed to load mosques. Please try again later.');
@@ -35,16 +29,7 @@ const Listmosque = () => {
     fetchMosques();
   }, []);
 
-  const handleSearch = () => {
-    const trimmedQuery = searchQuery.trim(); 
-    const filtered = mosques.filter((mosque) =>
-      mosque.name.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
-      mosque.city.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
-      mosque.street.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
-      mosque.postalCode.toLowerCase().includes(trimmedQuery.toLowerCase())
-    );
-    setFilteredMosques(filtered);
-  };
+ 
 
   if (loading) {
     return (
@@ -62,26 +47,16 @@ const Listmosque = () => {
     <div className="TOTAL">
       <h2 className="grid-title">تمام مسجد</h2>
       <div className="auth">
-        <Link className="auth" to="/login">Login</Link>
-        <Link className="auth" to="/register">Register</Link>
+        <Link className="auth" to="/">Home</Link>
+        <Link className="auth" to="/listmosque">list mosque</Link>
       </div>
-      <div className="input-container">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Enter your area or mosque name"
-        />
-        <button className="search" onClick={handleSearch}>
-          Search
-        </button>
-      </div>
+      <h2 className="grid-title">WatchL</h2>
       <br />
       <br />
       <div className="containers">
         <div className="grid">
-          {filteredMosques.length > 0 ? (
-            filteredMosques.map((mosque) => (
+          {mosques.length > 0 ? (
+            mosques.map((mosque) => (
               <div className="mosque-card" key={mosque._id}>
                 {mosque.images && mosque.images.length > 0 ? (
                   <img
@@ -97,12 +72,15 @@ const Listmosque = () => {
                   <p className="mosque-title">{mosque.name}</p>
                   <p className="mosque-title">{mosque.street}</p>
                   <p className="mosque-title">{mosque.city}-{mosque.postalCode}</p>
+                  
                   <button
                     className="moremore"
                     onClick={() => navigate(`/detailsmosque/${mosque._id}`)}
                   >
                     More Details
                   </button>
+                  <br />
+                 
                 </div>
               </div>
             ))
@@ -115,4 +93,4 @@ const Listmosque = () => {
   );
 };
 
-export default Listmosque;
+export default watchlist;

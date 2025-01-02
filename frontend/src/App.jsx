@@ -11,6 +11,7 @@ import Updatemosques from "./componets/admin/Updatemosques.jsx";
 import Deletedmosques from "./componets/admin/Deletedmosques.jsx";
 import Login from "./componets/login/Login.jsx";
 import Register from "./componets/register/Resgister.jsx";
+import Watchlist from "./componets/user/WatchList.jsx";
 
 
 
@@ -25,7 +26,7 @@ const App = () => {
     <Route path="/" element={<Enterpage/>}/>
 
    
-    
+    <Route path="/watchlist" element={<Watchlist/>}/>
     <Route path="/listmosque" element={<Listmosque/>}/>
 
     <Route path="/detailsmosque/:id" element={<MosqueDetails/>} />

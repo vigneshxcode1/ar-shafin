@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Listmosque.css';
-
+import heart from '../../images/heart.png'
 
 const watchlist= () => {
   const [mosques, setMosques] = useState([]);
@@ -50,7 +50,7 @@ const watchlist= () => {
         <Link className="auth" to="/">Home</Link>
         <Link className="auth" to="/listmosque">list mosque</Link>
       </div>
-      <h2 className="grid-title">WatchL</h2>
+      <h2 className="grid-title">WatchList <img src={heart} className='heart' alt="" srcset="" /></h2>
       <br />
       <br />
       <div className="containers">

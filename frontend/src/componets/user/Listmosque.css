@@ -136,11 +136,13 @@ body {
   text-decoration: none;
   color: aliceblue;
   display: flex;
-  gap: 20px;
+  gap: 40px;
   justify-content: center;
   margin-bottom: 20px;
 }
-
+.heart{
+  width: 25px;
+}
 
 
   

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./Enter.css";
 import backgroundVideo from "../../images/intro.mp4"; 
 import mosqueimg from '../../images/mosque.png'
+import heartimg from '../../images/heart.png'
+
 
 const Entry = () => {
   const videoRef = useRef(null);
@@ -35,7 +37,9 @@ const Entry = () => {
           <Link to="/listmosque" className="link-main">
             <h1 id="link"className="link-item">find mosque <img className="introimg" src={mosqueimg} alt="" /></h1>
           </Link>
-       
+          <Link to="/watchlist" className="link-main">
+            <h1 id="link"className="link-item">WatchList <img className="introimg" src={heartimg} alt="" /></h1>
+          </Link>
         </nav>
       </div>
     </div>

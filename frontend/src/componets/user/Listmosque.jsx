@@ -63,7 +63,10 @@ const Listmosque = () => {
       <h2 className="grid-title">تمام مسجد</h2>
       <div className="auth">
         <Link className="auth" to="/login">Login</Link>
+        <Link className="auth" to="/watchlist">Watchlist</Link>
         <Link className="auth" to="/register">Register</Link>
+       
+
       </div>
       <div className="input-container">
         <input

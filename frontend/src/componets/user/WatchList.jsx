@@ -109,7 +109,11 @@ const watchlist = () => {
               </div>
             ))
           ) : (
-            <p>No mosques found matching your search.</p>
+            <>
+             <p>No mosques found matching your search.</p>
+            <Link to={"/listmosque"} className="addmosque">Add mosque</Link>
+            </>
+          
           )}
         </div>
       </div>

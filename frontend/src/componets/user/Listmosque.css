@@ -143,7 +143,14 @@ body {
 .heart{
   width: 25px;
 }
-
+.addmosque{
+  text-decoration: none;
+  color: white;
+  background-color: #45a049;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
 
   
   /* Media Queries for Responsiveness */

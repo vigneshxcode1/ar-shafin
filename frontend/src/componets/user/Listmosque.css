@@ -1,10 +1,4 @@
-/* Global Styles */
-body {
 
-    background-color:rgb(31, 69, 41);
-    background-image: url("../../images/33Hn.gif");
-  }
-  
   .grid-title {
     text-align: center;
     margin-bottom: 20px;
@@ -91,7 +85,7 @@ body {
   
   .mosque-image {
     width: 110%; ; 
-    object-fit: coer;
+    object-fit: cover;
     border-radius: 6px;
     cursor: pointer;
   }

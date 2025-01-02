@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
+import "./Createmosques.css"
 const BASE_URL = "https://ar-shafin-server.onrender.com";
 
 const UpdateMosque = () => {
@@ -23,7 +23,7 @@ const UpdateMosque = () => {
     maghrib: { azaan: "", jamaat: "" },
     isha: { azaan: "", jamaat: "" },
     jumma: { azaan: "", jamaat: "", qutba: "" },
-    images: [],
+    images:"",
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -38,6 +38,7 @@ const UpdateMosque = () => {
           `${BASE_URL}/api/mosque/detailsmosque/${id}`
         );
         setMosqueData(res.data.mosque);
+        console.log(res.data.mosque.images)
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch mosque data.");
@@ -92,8 +93,8 @@ const UpdateMosque = () => {
   }
 
   return (
-    <div className="container">
-      <h3 className="text-center">Update Mosque Details</h3>
+    <div className="create-mosque">
+      <h2 className="text-center">Update Mosque Details</h2>
       <form onSubmit={handleSubmit}>
         <h5>Mosque Information</h5>
         <div className="mb-3">
@@ -306,7 +307,15 @@ const UpdateMosque = () => {
             onChange={(e) => handleChange(e, "qutba", "jumma")}
           />
         </div>
-
+        <div className="mb-3">
+          <label>image</label>
+          <input
+            type="text"
+            className="form-control"
+            value={mosqueData.images}
+            onChange={(e) => handleChange(e, "images")}
+          />
+        </div>
         <button type="submit" className="btn btn-success">
           Update Mosque
         </button>

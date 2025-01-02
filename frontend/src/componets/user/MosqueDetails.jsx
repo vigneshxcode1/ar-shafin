@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import './mosque.css';
 import mapimg from '../../images/google-maps.png';
+import heart from '../../images/heart.png'
+
 
 const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
@@ -90,12 +92,12 @@ const navigate = useNavigate()
 <br />
       <div className="timings">
         <h2 className="prayerh2">Prayer Timings:</h2>
-        <p><strong>Fajr:</strong> {mosque.fajr?.azaan || 'Not Available'} (Azan), {mosque.fajr?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Dhuhr:</strong> {mosque.dhuhr?.azaan || 'Not Available'} (Azan), {mosque.dhuhr?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Asr:</strong> {mosque.asr?.azaan || 'Not Available'} (Azan), {mosque.asr?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Maghrib:</strong> {mosque.maghrib?.azaan || 'Not Available'} (Azan), {mosque.maghrib?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Isha:</strong> {mosque.isha?.azaan || 'Not Available'} (Azan), {mosque.isha?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Jumma:</strong> {mosque.jumma?.azaan || 'Not Available'} (Azan), {mosque.jumma?.jamaat || 'Not Available'} (Jamaat), Qutba: {mosque.jumma?.qutba || 'Not Available'}</p>
+        <p><strong>Fajr:</strong> (Azan) {mosque.fajr?.azaan || 'Not Available'}, {mosque.fajr?.jamaat || 'Not Available'} (Jamaat)</p>
+        <p><strong>Dhuhr:</strong>(Azan) {mosque.dhuhr?.azaan || 'Not Available'} , {mosque.dhuhr?.jamaat || 'Not Available'} (Jamaat)</p>
+        <p><strong>Asr:</strong>(Azan) {mosque.asr?.azaan || 'Not Available'} , {mosque.asr?.jamaat || 'Not Available'} (Jamaat)</p>
+        <p><strong>Maghrib:</strong>(Azan) {mosque.maghrib?.azaan || 'Not Available'} , {mosque.maghrib?.jamaat || 'Not Available'} (Jamaat)</p>
+        <p><strong>Isha:</strong> (Azan){mosque.isha?.azaan || 'Not Available'} , {mosque.isha?.jamaat || 'Not Available'} (Jamaat)</p>
+        <p><strong>Jumma:</strong>(Azan) {mosque.jumma?.azaan || 'Not Available'} , {mosque.jumma?.jamaat || 'Not Available'} (Jamaat), Qutba: {mosque.jumma?.qutba || 'Not Available'}</p>
 
         <p id='capacity'>Capacity: Regular - {mosque.regular || 'Not Available'}, Friday - {mosque.friday || 'Not Available'}</p>
       </div>
@@ -105,7 +107,7 @@ const navigate = useNavigate()
       </button>
 
       <button className="waytomosque" onClick={addtolocalstorage}>
-       watchlist 
+       watchlist <img src={heart} className='mapimg' alt="" srcset="" />
       </button>
 
 

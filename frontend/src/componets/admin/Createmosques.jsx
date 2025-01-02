@@ -104,7 +104,7 @@ const CreateMosque = () => {
         <label>Name:</label>
         <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
         <label>Slug:</label>
-        <input type="text" name="slug" value={formData.slug} onChange={handleInputChange} required />
+        <input type="text" name="slug" value={formData.slug} onChange={handleInputChange} />
         <label>State:</label>
         <input type="text" name="state" value={formData.state} onChange={handleInputChange} required />
         <label>City:</label>
@@ -112,11 +112,11 @@ const CreateMosque = () => {
         <label>Street:</label>
         <input type="text" name="street" value={formData.street} onChange={handleInputChange} required />
         <label>Postal Code:</label>
-        <input type="text" name="postalCode" value={formData.postalCode} onChange={handleInputChange} required />
+        <input type="text" name="postalCode" value={formData.postalCode} onChange={handleInputChange}  />
         <label>Phone:</label>
-        <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} required />
+        <input type="text" name="phone" value={formData.phone} onChange={handleInputChange}  />
         <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />
+        <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
         <label>Website:</label>
         <input type="text" name="website" value={formData.website} onChange={handleInputChange} />
         <label>Capacity (Regular):</label>

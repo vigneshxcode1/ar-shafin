@@ -5,8 +5,6 @@ import './Listmosque.css';
 
 const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
-// const BASE_URL="http://localhost:3000";
-
 const Listmosque = () => {
   const [mosques, setMosques] = useState([]);
   const [filteredMosques, setFilteredMosques] = useState([]);
@@ -18,10 +16,15 @@ const Listmosque = () => {
   useEffect(() => {
     const fetchMosques = async () => {
       try {
+        setLoading(true);
         const res = await axios.get(`${BASE_URL}/api/mosque/getmosque`);
         const sortedMosques = res.data.mosques.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
+
+        // Save the data to local storage
+        localStorage.setItem('mosques', JSON.stringify(sortedMosques));
+
         setMosques(sortedMosques);
         setFilteredMosques(sortedMosques);
       } catch (err) {
@@ -32,11 +35,21 @@ const Listmosque = () => {
       }
     };
 
-    fetchMosques();
+    // Check if data exists in local storage
+    const savedMosques = localStorage.getItem('mosques');
+    if (savedMosques) {
+      const parsedMosques = JSON.parse(savedMosques);
+      setMosques(parsedMosques);
+      setFilteredMosques(parsedMosques);
+      setLoading(false);
+    } else {
+      // Fetch from API if not found in local storage
+      fetchMosques();
+    }
   }, []);
 
   const handleSearch = () => {
-    const trimmedQuery = searchQuery.trim(); 
+    const trimmedQuery = searchQuery.trim();
     const filtered = mosques.filter((mosque) =>
       mosque.name.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
       mosque.city.toLowerCase().includes(trimmedQuery.toLowerCase()) ||
@@ -65,8 +78,6 @@ const Listmosque = () => {
         <Link className="auth" to="/login">Login</Link>
         <Link className="auth" to="/watchlist">Watchlist</Link>
         <Link className="auth" to="/register">Register</Link>
-       
-
       </div>
       <div className="input-container">
         <input

@@ -13,24 +13,10 @@ app.use(express.json());
 
 
 
-const allowedOrigins = [
-  'http://localhost:5173',           
-  'https://ar-shafin-client.onrender.com',
-  'http://localhost:8081',
-  "https://nsmjcs4-vigneshwaran1-8081.exp.direct",
-  "http://192.168.31.81:5173"
-];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'admin-id','Authorization'], // Specify allowed headers
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'admin-id','Authorization'], 
 }));
 
 

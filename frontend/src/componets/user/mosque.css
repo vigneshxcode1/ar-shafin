@@ -1,25 +1,16 @@
-/* mosque.css */
-
+/* General styles */
 .mosque-detail-container {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  
   font-family: Arial, sans-serif;
 }
-#capacity{
-  font-size: 20px;
-  background-color: #3b6f4a;
-  border-radius: 8px;
-  width: 90%;
-  
-}
+
 .heading {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #e5efa4;
   text-align: center;
- 
 }
 
 .mosque-image img {
@@ -31,24 +22,23 @@
   margin-bottom: 20px;
 }
 
+/* Prayer Timings Section */
 .timings {
-  margin-top: 80px;
-  background-color: #223919;
+  margin-top: 40px;
+
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 40px;
-font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
+  font-weight: 600;
+
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 
 .prayerh2 {
   font-size: 1.8rem;
   color: #fdfdfd;
   margin-bottom: 10px;
-
-  font-family:'Times New Roman', Times, serif;
-}
-
-.prayerh2  p{
-  margin-top: 20px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .timings p {
@@ -56,9 +46,43 @@ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
   line-height: 1.8;
   margin-top: 20px;
   color: #e1dd99;
-  margin-top: 20px
 }
 
+/* Prayer Table */
+.prayer-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.prayer-table th,
+.prayer-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.prayer-table th {
+  background-color: #387c3f;
+  color: white;
+  
+}
+
+.prayer-table td {
+  background-color: #39522f;
+  color: wheat;
+}
+
+.prayer-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.prayer-table th {
+  font-weight: bold;
+}
+
+/* Buttons */
 .waytomosque {
   background-color: #297fb995;
   color: white;
@@ -84,6 +108,7 @@ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
   height: 30px;
 }
 
+/* Address Section */
 .mosque-address {
   background-color: #ecf0f1;
   padding: 20px;
@@ -103,6 +128,7 @@ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
   margin: 5px 0;
 }
 
+/* Error and Loading States */
 .error, .no-data {
   text-align: center;
   color: #e74c3c;
@@ -115,6 +141,7 @@ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
   font-size: 1.2rem;
 }
 
+/* Responsive Styles */
 @media (max-width: 768px) {
   .mosque-detail-container {
     padding: 10px;
@@ -125,15 +152,26 @@ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;}
   }
 
   .timings p {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .waytomosque {
-    font-size: 2rem;
+    font-size: 1rem;
     padding: 8px 16px;
   }
 
   .mosque-address p {
     font-size: 1rem;
+  }
+
+  .prayer-table th,
+  .prayer-table td {
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+
+  .mapimg {
+    width: 25px;
+    height: 25px;
   }
 }

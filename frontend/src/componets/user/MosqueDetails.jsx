@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './mosque.css';
 import mapimg from '../../images/google-maps.png';
-import heart from '../../images/heart.png'
-
+import heart from '../../images/heart.png';
 
 const BASE_URL = 'https://ar-shafin-server.onrender.com';
 
@@ -13,7 +12,7 @@ const MosqueDetail = () => {
   const [mosque, setMosque] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMosqueDetail = async () => {
@@ -64,65 +63,107 @@ const navigate = useNavigate()
     window.open(mapUrl, '_blank');
   };
 
-
-  const addtolocalstorage=()=>{
+  const addtolocalstorage = () => {
     const existingWatchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
     const updatedWatchlist = [...existingWatchlist, mosque];
     localStorage.setItem('watchlist', JSON.stringify(updatedWatchlist));
 
-    if(updatedWatchlist){
-      navigate("/watchlist")
+    if (updatedWatchlist) {
+      navigate('/watchlist');
     }
-
-  }
+  };
 
   return (
     <>
       <div className="mosque-detail-container">
-      <h1 className="heading">{mosque.name || 'Mosque Name'}</h1>
+        <h1 className="heading">{mosque.name || 'Mosque Name'}</h1>
 
-      <div className="mosque-image">
-        {mosque.images && mosque.images.length > 0 ? (
-          <img src={mosque.images[0]} alt={mosque.name} />
-        ) : (
-          <p>No images available</p>
-        )}
+        <div className="mosque-image">
+          {mosque.images && mosque.images.length > 0 ? (
+            <img src={mosque.images[0]} alt={mosque.name} />
+          ) : (
+            <p>No images available</p>
+          )}
+        </div>
+
+        <br />
+        <div className="timings">
+          <h2 className="prayerh2">Prayer Timings:</h2>
+          <table className="prayer-table">
+            <thead>
+              <tr>
+                <th>Prayer</th>
+                <th>Azan</th>
+                <th>Jamaat</th>
+              
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fajr</td>
+                <td>{mosque.fajr?.azaan || 'Not Available'}</td>
+                <td>{mosque.fajr?.jamaat || 'Not Available'}</td>
+                
+              </tr>
+              <tr>
+                <td>Dhuhr</td>
+                <td>{mosque.dhuhr?.azaan || 'Not Available'}</td>
+                <td>{mosque.dhuhr?.jamaat || 'Not Available'}</td>
+               
+              </tr>
+              <tr>
+                <td>Asr</td>
+                <td>{mosque.asr?.azaan || 'Not Available'}</td>
+                <td>{mosque.asr?.jamaat || 'Not Available'}</td>
+               
+              </tr>
+              <tr>
+                <td>Maghrib</td>
+                <td>{mosque.maghrib?.azaan || 'Not Available'}</td>
+                <td>{mosque.maghrib?.jamaat || 'Not Available'}</td>
+              
+              </tr>
+              <tr>
+                <td>Isha</td>
+                <td>{mosque.isha?.azaan || 'Not Available'}</td>
+                <td>{mosque.isha?.jamaat || 'Not Available'}</td>
+                
+              </tr>
+              <tr>
+                <td>Jumma</td>
+                <td>{mosque.jumma?.azaan || 'Not Available'}</td>
+                <td>{mosque.jumma?.jamaat || 'Not Available'}</td>
+               
+              </tr>
+            </tbody>
+          </table>
+          <p id="capacity">
+            Capacity: Regular - {mosque.regular || 'Not Available'}, Friday -{' '}
+            {mosque.friday || 'Not Available'}
+          </p>
+        </div>
+
+        <button className="waytomosque" onClick={redirectToMap}>
+          Way to Map <img src={mapimg} className="mapimg" alt="Map Icon" />
+        </button>
+
+        <button className="waytomosque" onClick={addtolocalstorage}>
+          Watchlist <img src={heart} className="mapimg" alt="Heart Icon" />
+        </button>
+
+        <div className="mosque-address">
+          <h2>Address</h2>
+          <p>{mosque.street || 'Not Available'}</p>
+          <p>
+            {mosque.city}, {mosque.state} - {mosque.postalCode || 'Not Available'}
+          </p>
+
+          <h2>Contact Information</h2>
+          <p>Phone: {mosque.phone || 'Not Available'}</p>
+          <p>Email: {mosque.email || 'Not Available'}</p>
+        </div>
       </div>
-
-<br />
-      <div className="timings">
-        <h2 className="prayerh2">Prayer Timings:</h2>
-        <p><strong>Fajr:</strong> (Azan) {mosque.fajr?.azaan || 'Not Available'}, {mosque.fajr?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Dhuhr:</strong>(Azan) {mosque.dhuhr?.azaan || 'Not Available'} , {mosque.dhuhr?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Asr:</strong>(Azan) {mosque.asr?.azaan || 'Not Available'} , {mosque.asr?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Maghrib:</strong>(Azan) {mosque.maghrib?.azaan || 'Not Available'} , {mosque.maghrib?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Isha:</strong> (Azan){mosque.isha?.azaan || 'Not Available'} , {mosque.isha?.jamaat || 'Not Available'} (Jamaat)</p>
-        <p><strong>Jumma:</strong>(Azan) {mosque.jumma?.azaan || 'Not Available'} , {mosque.jumma?.jamaat || 'Not Available'} (Jamaat), Qutba: {mosque.jumma?.qutba || 'Not Available'}</p>
-
-        <p id='capacity'>Capacity: Regular - {mosque.regular || 'Not Available'}, Friday - {mosque.friday || 'Not Available'}</p>
-      </div>
-
-      <button className="waytomosque" onClick={redirectToMap}>
-        Way to Map <img src={mapimg} className="mapimg" alt="Map Icon" />
-      </button>
-
-      <button className="waytomosque" onClick={addtolocalstorage}>
-       watchlist <img src={heart} className='mapimg' alt="" srcset="" />
-      </button>
-
-
-      <div className="mosque-address">
-        <h2>Address</h2>
-        <p>{mosque.street || 'Not Available'}</p>
-        <p>{mosque.city}, {mosque.state} - {mosque.postalCode || 'Not Available'}</p>
-
-        <h2>Contact Information</h2>
-        <p>Phone: {mosque.phone || 'Not Available'}</p>
-        <p>Email: {mosque.email || 'Not Available'}</p>
-      </div>
-    </div>
     </>
-  
   );
 };
 
